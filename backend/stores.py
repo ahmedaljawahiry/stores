@@ -23,6 +23,8 @@ class Stores:
         return len(self._stores)
 
     def filter(self, search_str: str):
+        if not search_str:
+            return self._stores
         postcode_matches = []
         name_matches = []
         lowercase_search_str = search_str.lower()

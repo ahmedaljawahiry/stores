@@ -32,7 +32,8 @@ def test_can_create():
     ('ORP', ['Orpington']),  # case insensitive
     ('or', ['Orpington', 'Brentford']),
     ('br', ['Orpington', 'Bracknell', 'Broadstairs', 'Tunbridge_Wells', 'Brentford']),  # postcode matches first
-    ('nomatch', [])
+    ('nomatch', []),
+    ('', ['Orpington', 'Bracknell', 'Broadstairs', 'Tunbridge_Wells', 'Brentford'])
 ])
 def test_can_search(stores, search_str, expected_result):
     results = stores.filter(search_str=search_str)
