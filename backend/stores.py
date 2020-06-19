@@ -13,14 +13,14 @@ class Stores:
     POST_CODE = "postcode"
     NAME = "name"
 
-    def __init__(self, data: List[Dict[str, str]]):
-        self._data = [Store(**store_dict) for store_dict in data]
+    def __init__(self, json: List[Dict[str, str]]):
+        self._stores = [Store(**store_dict) for store_dict in json]
 
     def __getitem__(self, item):
-        return self._data[item]
+        return self._stores[item]
 
     def __len__(self):
-        return len(self._data)
+        return len(self._stores)
 
     def filter(self, search_str: str):
         postcode_matches = []

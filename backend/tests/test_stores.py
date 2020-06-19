@@ -5,7 +5,7 @@ from stores import Stores, Store
 
 @pytest.fixture(scope='module')
 def stores():
-    return Stores(data=[
+    return Stores(json=[
         {"name": "Orpington", "postcode": "BR5 3RP"},
         {"name": "Bracknell", "postcode": "RG12 1EN"},
         {"name": "Broadstairs", "postcode": "CT10 2RQ"},
@@ -21,7 +21,7 @@ def test_can_create():
         {"name": "Worthing", "postcode": "BN14 9GB"}
     ]
 
-    stores = Stores(data=stores_json)
+    stores = Stores(json=stores_json)
     assert len(stores) == len(stores_json)
     for json in stores_json:
         assert Store(**json) in stores
