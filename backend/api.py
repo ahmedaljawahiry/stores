@@ -18,10 +18,13 @@ def home():
 
 
 @app.get("/stores/")
-def stores(page: int = 1):
+def stores(page: int = 1, search: str = None):
     with open('stores.json') as _json:
         loaded_json = json.load(_json)
+        data = Stores(json=loaded_json).filter(search_str=search)
+        query_params_to_pass_on = {'search': search} if search else None
         return get_paginated_response(
-            data=Stores(json=loaded_json),
-            page=page
+            data=data,
+            page=page,
+            extra_query_params=query_params_to_pass_on
         )
