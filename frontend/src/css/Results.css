@@ -1,0 +1,12 @@
+
+div {
+    margin: 50px;
+}
+
+#results {
+    font-family: Helvetica;
+    font-size: 30px;
+    border: solid dodgerblue;
+    overflow-y: scroll;
+    height: 200px;
+}
