@@ -1,44 +1,86 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Overview
 
-## Available Scripts
+Full stack project with a backend API feeding a simple frontend. Features
+include pagination, searchable-api, and debouncing.
 
-In the project directory, you can run:
+## Backend
 
-### `yarn start`
+### Stack 
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+- [FastAPI](https://fastapi.tiangolo.com/) 
+- [pytest](https://docs.pytest.org/en/stable/)
+- Prerequisites:
+    1. Python - only tested with v3.8.
+    2. pip.
+    3. [venv](https://docs.python.org/3/library/venv.html), if you wish. 
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+### Usage
 
-### `yarn test`
+In the `backend/` directory:
+1. Run `pip install -r requirements.txt` to install dependencies.
+2. Run `uvicorn api:app` to start the app on port 8000.
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+The app should now be running at [http://localhost:8000](http://localhost:8000). 
+Go to `/docs` to check out the API docs.
 
-### `yarn build`
+To run tests, simply run `pytest` in the `backend/` directory.
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Frontend
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+### Stack
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- Bootstrapped with [Create React App](https://create-react-app.dev/)
+- [React](https://reactjs.org/)
+- [Typescript](https://www.typescriptlang.org/)
+- Prerequisites:
+    1. [yarn](https://classic.yarnpkg.com/en/docs/install/).
+    2. A relatively modern browser.
+    
+### Usage
 
-### `yarn eject`
+In the `frontend/` directory:
+1. Run `yarn install` to install dependencies.
+2. Run `yarn start` to start the app on port 3000.
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+The app should now be running at [http://localhost:3000](http://localhost:3000).
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### Features
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+- Lazy loading on page scroll: 
+    hit search without entering anything to bypass any filtering, then
+    scroll inside the results container. The "fetch url" at the top of the
+    page shows the API calls being made.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+- 100ms debounce: this is hard to see when set to 100ms - you can increase
+    the time in `App.tsx` to better see the effect.
+    
 
-## Learn More
+### Questions
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+1. Which test did you complete? (backend or full-stack)
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+    **Answer:** Full-stack
+
+2. If you had chosen to spend more time on this test, what would you have done differently?
+
+    **Answer:** Definitely add frontend tests with [React testing library](https://testing-library.com/docs/react-testing-library/intro),
+    Dockerise the app to simplify setup, and add some (in-code) documentation. 
+    Maybe use Vue.js, to see what thats like - this is my first
+    go with FastAPI and I'm really impressed. Could test performance by using a much larger dataset,
+    but I'm not a fan of premature-optimisation; the current code satisfies the requirement.
+
+3. What part did you find the hardest? What part are you most proud of? In both cases, why?
+
+   **Answer:** Pagination was tricky to implement because of the slicing but easy to test, so not too bad overall. 
+   Debouncing was probably the hardest, and I can imagine it'd be relatively difficult to test. The implementation only
+   looks simple thanks to React's built-in [hooks](https://reactjs.org/docs/hooks-effect.html). 
+   I'm probably most proud of the lazy-loading; it just looks really satisfying when you're
+   scrolling and watching the requests in the network console!
+
+4. What is one thing we could do to improve this test?
+
+   **Answer:** I cant actually think of anything! It's a fair challenge and, refreshingly, relevant to
+   most day-to-day work. I've learnt a few things so it's been a pleasant experience
+   overall. I 100% prefer spending time on something like this, over spending hours memorising
+   a bunch of algorithms. 
+
