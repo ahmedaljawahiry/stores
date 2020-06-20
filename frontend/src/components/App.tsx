@@ -4,6 +4,7 @@ import Results from "./Results";
 import {fetchStores, Store, STORES_URL} from "../services/storesService";
 import Search from "./Search";
 import Suggestions from "./Suggestions";
+import useDebounceQuery from "../hooks/useDebounceQuery";
 
 export default function App() {
 
@@ -13,6 +14,24 @@ export default function App() {
     const [total, setTotal] = useState<number>(0);
     const [nextUrl, setNextUrl] = useState<string>();
 
+    useDebounceQuery({
+        queryStr: search,
+        query: async (searchValue: string) => {
+            if (searchValue.length < 2) {
+                setSuggestions([]);
+                return
+            }
+            const response = await fetchStores(STORES_URL + `?search=${searchValue}`);
+            let matches: Array<string> = [];
+            response.data.forEach(store => {
+                const match = store.postcode.toLowerCase().includes(searchValue.toLowerCase()) ? store.postcode : store.name;
+                matches.push(match);
+            })
+            setSuggestions(matches);
+        },
+        debounceTime: 100
+    })
+
     async function fetchData(e: any) {
         e.preventDefault();
         const response = await fetchStores(STORES_URL + `?search=${search}`);
@@ -21,29 +40,12 @@ export default function App() {
         setTotal(response.total);
     }
 
-    async function loadSuggestions(searchValue: string) {
-        if (searchValue.length < 2) {
-            setSuggestions([]);
-            return
-        }
-        const response = await fetchStores(STORES_URL + `?search=${searchValue}`);
-        let matches: Array<string> = [];
-        response.data.forEach(store => {
-            const match = store.postcode.toLowerCase().includes(searchValue.toLowerCase()) ? store.postcode : store.name;
-            matches.push(match);
-        })
-        setSuggestions(matches);
-    }
-
     return (
         <div className="App">
             {nextUrl && <div className='fetch-url'><b>Fetch URL:</b> {nextUrl}</div>}
             <Search
                 value={search}
-                onChange={async (v) => {
-                    setSearch(v);
-                    await loadSuggestions(v);
-                }}
+                onChange={setSearch}
                 onSubmit={async (e) => {
                     setSuggestions([]);
                     await fetchData(e);
@@ -51,10 +53,7 @@ export default function App() {
             />
             <Suggestions
                 data={suggestions}
-                onClick={(v) => {
-                    setSearch(v);
-                    setSuggestions([]);
-                }}
+                onClick={setSearch}
             />
             <Results
                 data={stores}
