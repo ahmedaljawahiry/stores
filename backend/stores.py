@@ -34,4 +34,4 @@ class Stores:
                 postcode_matches.append(store)
             elif lowercase_search_str in store.name.lower():
                 name_matches.append(store)
-        return postcode_matches + name_matches
+        return postcode_matches + name_matches  # want postcode matches first
