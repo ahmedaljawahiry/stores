@@ -1,12 +1,13 @@
 
-div {
-    margin: 50px;
-}
-
-#results {
+#results-container {
+    margin: 20px;
     font-family: Helvetica;
     font-size: 30px;
     border: solid dodgerblue;
     overflow-y: scroll;
     height: 200px;
+}
+
+.result {
+    margin: 20px;
 }
