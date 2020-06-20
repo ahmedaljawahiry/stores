@@ -29,6 +29,7 @@ export default function App() {
 
     return (
         <div className="App">
+            {nextUrl && <div className='fetch-url'><b>Fetch URL:</b> {nextUrl}</div>}
             <Search value={search} onChange={setSearch} onSubmit={fetchData}/>
             <Results data={stores} total={total} loadMore={loadMore}/>
         </div>

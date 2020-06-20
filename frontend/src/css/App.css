@@ -2,3 +2,9 @@
   text-align: center;
   margin: 50px;
 }
+
+.fetch-url {
+  font-family: Helvetica;
+  color: darkgreen;
+  margin-bottom: 20px;
+}
