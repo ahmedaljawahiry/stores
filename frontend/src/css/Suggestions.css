@@ -1,0 +1,10 @@
+
+
+#suggestions-container {
+    font-family: Helvetica;
+    color: dimgray;
+}
+
+.suggestion:hover {
+    cursor: pointer;
+}

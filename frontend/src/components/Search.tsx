@@ -10,7 +10,6 @@ interface Props {
 export default function Search(props: Props) {
     return <form onSubmit={props.onSubmit}>
         <input value={props.value} onChange={(e) => props.onChange(e.target.value)} placeholder='Search...'/>
-        <br/>
         <button type='submit'>Search</button>
     </form>
 }

@@ -3,8 +3,8 @@ import {Store} from "../services/storesService";
 import "../css/Results.css";
 
 interface Props {
-    data?: Array<Store>,
-    total?: number,
+    data: Array<Store>,
+    total: number,
     loadMore: () => void
 }
 
@@ -20,13 +20,13 @@ export default function Results(props: Props) {
 
     if (!props.data) return null;
     return <div>
-        <div>Results rendered: {props.data.length}</div>
-        <div>Total number of results: {props.total || 0}</div>
         <div id='results-container' onScroll={onScroll}>
             {props.data.map(result => <div key={result.postcode}>
                 <div className="result">{result.name}, {result.postcode}</div>
                 <br/>
             </div>)}
         </div>
+        <div>Results rendered: {props.data.length}</div>
+        <div>Total number of results: {props.total || 0}</div>
     </div>
 }
