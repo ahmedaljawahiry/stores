@@ -1,6 +1,7 @@
 ## Overview
 
-Full stack project with a backend API feeding a simple frontend.
+Full stack project with an API feeding a simple UI for searching data.
+Results are lazy-loaded on scroll, and suggestions are given with a debounce effect.
 
 ## Backend
 
