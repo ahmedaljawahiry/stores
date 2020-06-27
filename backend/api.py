@@ -20,8 +20,6 @@ app.add_middleware(
 @app.get("/")
 def home():
     return {
-        "task": "https://github.com/tailsdotcom/coding-test",
-        "role": "full stack engineer",
         "author": "Ahmed Al-Jawahiry",
     }
 

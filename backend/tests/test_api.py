@@ -22,8 +22,6 @@ def test_home(client):
     response = client.get("/")
     assert response.status_code == 200
     assert response.json() == {
-        "task": "https://github.com/tailsdotcom/coding-test",
-        "role": "full stack engineer",
         "author": "Ahmed Al-Jawahiry",
     }
 
